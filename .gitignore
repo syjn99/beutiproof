@@ -1,0 +1,20 @@
+# Local datasets and generated analysis artifacts
+/data/
+/artifacts/
+/review-output/
+
+# Python environments and caches
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+
+# Lean build artifacts
+.lake/
+
+# Credentials and local settings
+.env
+.env.*
+!.env.example
+.DS_Store
