@@ -2,7 +2,8 @@
 
 ## Scope
 
-- This is a design bootstrap, not an implemented Lean analyzer or collector.
+- This is a Python and Lean development scaffold, not an implemented analyzer or collector.
+- Read [development](docs/DEVELOPMENT.md) for setup, commands, and current limitations.
 - Read [DESIGN](docs/DESIGN.md) before changing behavior or scope.
 - Read [data analysis](docs/data-analysis/README.md) before changing collection, storage, or evaluation.
 - Default analysis targets a pinned project. File and theorem options only narrow report scope.
@@ -16,8 +17,8 @@
 - Never execute collected project code on the host or send code to a remote model without permission.
 - Keep datasets, credentials, local environments, and generated artifacts out of Git.
 - Do not push, open PRs, publish datasets, or expand scope without explicit approval.
-- Use repository-local uv and Ruff when Python implementation begins.
-- Pin Lean and dependency revisions when Lean implementation begins.
+- Use repository-local uv and Ruff for Python.
+- Keep Lean and dependency revisions pinned.
 
 ## Writing and checks
 
@@ -26,10 +27,15 @@
 - Run the linter without disabled rules or a nonzero baseline on project-authored prose.
 - Do not rewrite vendored skill files merely to satisfy their own prose linter.
 - Run `python3 .agents/skills/asd-ste100/scripts/ste-lint.py --selftest`.
-- Run `python3 .agents/skills/asd-ste100/scripts/ste-lint.py README.md AGENTS.md docs/DESIGN.md docs/data-analysis/*.md --json`.
+- Run `python3 .agents/skills/asd-ste100/scripts/ste-lint.py README.md AGENTS.md docs/*.md docs/data-analysis/*.md --json`.
+- Run `uv run pytest -q` for Python tests and our Lean build smoke test.
+- Use `uv run pytest -m "not lean" -q` when the pinned Lean toolchain is unavailable.
+- Run `uv run ruff check src tests` and `uv run ruff format --check src tests`.
+- Run `(cd lean && lake build)` and `(cd lean && lake exe beutiproof-status)` for the Lean scaffold.
 - Check local links and `git diff --check` before committing.
 - Obtain an independent Sol review for each commit. Fix blockers and repeat review before committing.
-- Run relevant tests when implementation exists. Documentation lint does not establish analyzer correctness.
+- Write a failing test before implementing a new behavior.
+- Documentation lint and scaffold builds do not establish analyzer correctness.
 
 ## Instruction files
 
