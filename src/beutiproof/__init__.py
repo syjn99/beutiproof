@@ -1,0 +1,1 @@
+"""Development scaffold for BeutiProof."""

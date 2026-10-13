@@ -1,0 +1,10 @@
+name = "beutiproof"
+version = "0.1.0"
+defaultTargets = ["BeutiProof", "beutiproof-status"]
+
+[[lean_lib]]
+name = "BeutiProof"
+
+[[lean_exe]]
+name = "beutiproof-status"
+root = "Main"

@@ -1,0 +1,35 @@
+[build-system]
+requires = ["hatchling==1.32.4"]
+build-backend = "hatchling.build"
+
+[project]
+name = "beutiproof"
+version = "0.1.0"
+description = "Development scaffold for project-wide Lean proof quality analysis"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+authors = [{ name = "Jun Song" }]
+dependencies = []
+
+[project.scripts]
+beautiproof = "beutiproof.cli:main"
+
+[dependency-groups]
+dev = ["pytest>=8,<10", "ruff>=0.9,<1"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/beutiproof"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--strict-markers"
+markers = ["lean: builds and runs our pinned Lean scaffold"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+include = ["pyproject.toml", "src/**/*.py", "tests/**/*.py"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]

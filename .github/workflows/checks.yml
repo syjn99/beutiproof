@@ -1,0 +1,51 @@
+name: checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  scaffold:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@d0cc045d04ccac9d8b7881df0226f9e82c39688e # v6
+        with:
+          version: "0.12.7"
+          python-version: "3.11"
+      - uses: leanprover/lean-action@24581d74d674803a25a81b10b059c5c0cdd344c6 # v1
+        with:
+          lake-package-directory: lean
+          auto-config: "false"
+          build: "true"
+          test: "false"
+          lint: "false"
+          use-github-cache: "false"
+          use-mathlib-cache: "false"
+      - name: Install locked Python dependencies
+        run: uv sync --locked
+      - name: Check Python style
+        run: |
+          uv run --locked ruff check src tests
+          uv run --locked ruff format --check src tests
+      - name: Test CLI and Lean smoke protocol
+        run: uv run --locked pytest -q
+      - name: Build Python distribution
+        run: uv build --out-dir artifacts/dist
+      - name: Test installed wheel
+        run: |
+          uv venv artifacts/wheel-smoke --python 3.11
+          uv pip install --no-deps --python artifacts/wheel-smoke/bin/python artifacts/dist/*.whl
+          artifacts/wheel-smoke/bin/beautiproof --help
+          artifacts/wheel-smoke/bin/beautiproof --version
+      - name: Check writing
+        run: |
+          python3 .agents/skills/asd-ste100/scripts/ste-lint.py --selftest
+          python3 .agents/skills/asd-ste100/scripts/ste-lint.py README.md AGENTS.md docs/*.md docs/data-analysis/*.md .agents/skills/asd-ste100/UPSTREAM.md --json

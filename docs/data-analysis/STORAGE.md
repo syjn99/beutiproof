@@ -34,7 +34,7 @@ data/
   exports/
 ```
 
-These paths describe future local artifacts, not files shipped by this bootstrap.
+These paths describe future local artifacts, not files shipped by this scaffold.
 The repository ignores `data/`, `artifacts/`, and `review-output/` by default.
 Publish only explicitly reviewed, licensed dataset releases through a separate process.
 Do not commit collected source repositories, databases, credentials, or private annotations to the application repository.

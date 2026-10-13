@@ -3,8 +3,8 @@
 ## Status
 
 These documents specify a future collection and evaluation pipeline.
-No collector, SQLite corpus, or human annotation dataset exists in this bootstrap.
-The source inventory summary records a static audit, not Lean analysis or golden labels.
+No collector, SQLite corpus, or human annotation dataset exists in this scaffold.
+Published corpus counts describe source availability, not completed analysis or golden labels.
 
 ## Reading order
 

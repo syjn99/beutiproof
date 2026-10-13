@@ -4,10 +4,11 @@
 
 This document proposes a CLI tool for the CS520 Lean Proof Beauty Analyzer contest.
 The repository name is `beutiproof`.
-The proposed CLI spelling remains `beautiproof` until implementation fixes its public interface.
-This repository currently contains documentation and a vendored writing linter.
+The Python package uses `beutiproof`, and its console command uses `beautiproof`.
+This repository contains development scaffolds, documentation, and a vendored writing linter.
 The design does not describe an implemented or tested Lean analyzer.
-All commands, output fields, and acceptance targets below describe planned behavior.
+Analysis commands, report fields, and acceptance targets below describe planned behavior.
+See [development](DEVELOPMENT.md) for the scaffold and its unavailable-backend responses.
 
 BeutiProof reports evidence about proof quality.
 It does not claim to measure universal mathematical beauty.
@@ -295,7 +296,7 @@ The detailed plans live in [data analysis](data-analysis/README.md):
 - [Storage](data-analysis/STORAGE.md): immutable sources, SQLite relationships, JSONL records, identifiers, and versioned exports.
 - [Evaluation](data-analysis/EVALUATION.md): the 60-family development pilot, independent final evaluation, annotation, and leakage controls.
 
-No collector, corpus-wide analyzer, or human annotation dataset exists in this bootstrap.
+No collector, corpus-wide analyzer, or human annotation dataset exists in this scaffold.
 
 ## 10. Evaluation and acceptance targets
 
