@@ -9,6 +9,13 @@ The proposed core works without an LLM after users install its dependencies.
 Optional refactoring must preserve the target statement and pass independent checks.
 Heuristic quality judgments do not establish mathematical beauty.
 
+## Documentation
+
+- [Design](docs/DESIGN.md): project-wide analysis, proposed CLI, and verification boundaries.
+- [Data analysis](docs/data-analysis/README.md): collection, storage, and independent evaluation plans.
+
+All CLI examples in the design describe planned behavior, not commands available in this bootstrap.
+
 ## License
 
 Project-authored content uses the MIT license.
